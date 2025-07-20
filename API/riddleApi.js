@@ -20,6 +20,17 @@ export async function getRiddleById(id) {
     }
 }
 
+export async function getRiddlesByDifficulty(difficulty) {
+    try {
+        const response = await fetch(`http://localhost:3000/riddles/${difficulty}`)
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching riddles by difficulty: ', error);
+        return;
+    }
+}
+
 export async function createRiddle(riddle) {
     try {
         const response = await fetch('http://localhost:3000/riddles', {

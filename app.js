@@ -1,4 +1,4 @@
 //imports
 import { mainMenu } from "./menus/menus.js"; 
 
-mainMenu();
+await mainMenu();

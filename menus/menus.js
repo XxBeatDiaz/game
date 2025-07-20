@@ -1,7 +1,7 @@
 import readline from "readline-sync";
 import { showMainMenu, showRiddlesMenu, showModesMenu } from "./showMenus.js";
 import { regularMode, easiestRiddles, mediumRiddles, hardestRiddles, runCoosenRiddle } from "../gameManager/modes.js";
-import { addRiddle } from "../gameManager/riddlesM.js";
+import { addRiddle } from "../services/riddleServ.js";
 
 export async function mainMenu() {
     let flag = true;
@@ -32,14 +32,14 @@ export async function mainMenu() {
 
 export async function riddlesMenu() {
     while (true) {
-        const lenOfListRiddles = await showRiddlesMenu();
+        const allRiddles = await showRiddlesMenu();
         const choosen = readline.question(`Choose option> `);
         if (choosen === "+") {
             await addRiddle()
         } else if (choosen === "0") {
             return;
-        } else if (parseInt(choosen) >= 1 && parseInt(choosen) <= lenOfListRiddles) {
-            await runCoosenRiddle(choosen);
+        } else if (parseInt(choosen) >= 1 && parseInt(choosen) <= allRiddles.length) {
+            await runCoosenRiddle(allRiddles[parseInt(choosen) - 1]._id);
         } else {
             console.log("Not valid try again");
         }

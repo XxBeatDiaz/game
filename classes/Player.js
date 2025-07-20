@@ -1,8 +1,7 @@
 export class Player {
-    constructor(name) {
-        this.name = name;
-        this.times = [];
-        // this.seconds= 0;
+    constructor(objPlayer) {
+        this.name = objPlayer.name;
+        this.times = objPlayer.times;
     }
 
     // Take start and end time and return the amount of time taken and save 
