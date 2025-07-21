@@ -11,5 +11,5 @@ export async function loadPlayer(playerName) {
 export async function addPlayer(username) {
     const obj = {name: username, times: []};
     const newPlayer = await createPlayer(obj);
-    return newPlayer;
+    return new Player(newPlayer);
 }

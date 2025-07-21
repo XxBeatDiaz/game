@@ -1,4 +1,3 @@
-import { getAllRiddles } from "../API/riddleApi.js";
 import { loadRiddles } from "../services/riddleServ.js";
 
 export function showMainMenu() {
@@ -12,8 +11,7 @@ export function showMainMenu() {
 }
 
 export async function showRiddlesMenu() {
-    const allRiddles = await getAllRiddles();
-    const loadedRiddles = loadRiddles(allRiddles);
+    const loadedRiddles = await loadRiddles();
     console.log(`====Riddles====`);
     console.log(`\n+. Create riddle\n`);
     for (let i = 0; i < loadedRiddles.length; i++) {

@@ -11,13 +11,13 @@ export async function mainMenu(player) {
 
         switch (choice) {
             case "1":
-                await regularMode();
+                await regularMode(player);
                 break;
             case "2":
-                await riddlesMenu();
+                await riddlesMenu(player);
                 break;
             case "3":
-                await modesMenu();
+                await modesMenu(player);
                 break;
             case "0":
                 flag = false;
@@ -30,7 +30,7 @@ export async function mainMenu(player) {
     }
 }
 
-export async function riddlesMenu() {
+export async function riddlesMenu(player) {
     while (true) {
         const allRiddles = await showRiddlesMenu();
         const choosen = readline.question(`Choose option> `);
@@ -46,23 +46,23 @@ export async function riddlesMenu() {
     }
 }
 
-export async function modesMenu() {
+export async function modesMenu(player) {
     let flag = true;
     while (flag) {
         showModesMenu();
         const modeChoosen = readline.question(`Coose option> `);
         switch (modeChoosen) {
             case "1":
-                await regularMode();
+                await regularMode(player);
                 break;
             case "2":
-                await easiestRiddles();
+                await easiestRiddles(player);
                 break;
             case "3":
-                await mediumRiddles();
+                await mediumRiddles(player);
                 break;
             case "4":
-                await hardestRiddles();
+                await hardestRiddles(player);
                 break;
             case "0":
                 flag = false;

@@ -9,7 +9,7 @@ export async function getAllRiddles() {
     }
 }
 
-export async function getRiddleById(id) {
+export async function getRiddleById(id) {// id need fix    
     try {
         const response = await fetch(`http://localhost:3000/riddles/${id}`);
         const data = await response.json();
