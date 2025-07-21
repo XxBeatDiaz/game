@@ -7,16 +7,15 @@ export async function startGame() {
     console.clear();
 
     const username = readline.question(`Enter your name> `);
-    const player = await loadPlayer(username);
+    let player = await loadPlayer(username);
     
     if (!player.name) {
-        const a = await addPlayer(username);
-        console.log(a);
+        player = await addPlayer(username);
     }else{
         console.log(`You connect with: ${player.name}`);
         
     }
-    // await mainMenu();
+    await mainMenu(player);
 
 
 }

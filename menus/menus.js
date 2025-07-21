@@ -3,7 +3,7 @@ import { showMainMenu, showRiddlesMenu, showModesMenu } from "./showMenus.js";
 import { regularMode, easiestRiddles, mediumRiddles, hardestRiddles, runCoosenRiddle } from "../gameManager/modes.js";
 import { addRiddle } from "../services/riddleServ.js";
 
-export async function mainMenu() {
+export async function mainMenu(player) {
     let flag = true;
     while (flag) {
         showMainMenu();
