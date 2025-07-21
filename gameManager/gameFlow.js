@@ -1,23 +1,18 @@
 import readline from "readline-sync";
-// import { mainMenu } from "../menus/menus.js";
+import { mainMenu } from "../menus/menus.js";
 import { loadPlayer, addPlayer } from "../services/playerServ.js";
 
 export async function startGame() {
-    readline.question(`Press Enter`);
-    console.clear();
-
     const username = readline.question(`Enter your name> `);
     let player = await loadPlayer(username);
-    
+
     if (!player.name) {
         player = await addPlayer(username);
-    }else{
+    } else {
         console.log(`You connect with: ${player.name}`);
-        
     }
+    
     await mainMenu(player);
-
-
 }
 
 startGame();

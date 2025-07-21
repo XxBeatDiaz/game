@@ -23,7 +23,7 @@ export async function easiestRiddles(player){
 
 // Run the medium riddles
 export async function mediumRiddles(player){
-    const loadedEasiestRiddles = loadRiddlesByDifficulty("medium");
+    const loadedEasiestRiddles = await loadRiddlesByDifficulty("medium");
     runQuestions(loadedEasiestRiddles, player);
 
     console.clear();
@@ -32,7 +32,7 @@ export async function mediumRiddles(player){
 
 // Run the hardest riddles
 export async function hardestRiddles(player){
-    const loadedEasiestRiddles = loadRiddlesByDifficulty("hard");
+    const loadedEasiestRiddles = await loadRiddlesByDifficulty("hard");
     runQuestions(loadedEasiestRiddles, player);
 
     console.clear();
@@ -41,7 +41,7 @@ export async function hardestRiddles(player){
 
 // Run only one riddle
 export async function runCoosenRiddle(riddleId, player) {
-    const loadedRiddle = loadOneRiddle(riddles);
+    const loadedRiddle = await loadOneRiddle(riddleId);
     runQuestions(loadedRiddle, player);
 
     console.clear();
