@@ -1,7 +1,5 @@
 import { getPlayerByName, createPlayer } from "../API/playerApi.js";
 import { Player } from "../classes/Player.js";
-import readline from "readline-sync";
-
 
 export async function loadPlayer(playerName) {
     const player = await getPlayerByName(playerName);
