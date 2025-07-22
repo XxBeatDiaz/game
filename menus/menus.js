@@ -39,7 +39,7 @@ export async function riddlesMenu(player) {
         } else if (choosen === "0") {
             return;
         } else if (parseInt(choosen) >= 1 && parseInt(choosen) <= allRiddles.length) {
-            await runCoosenRiddle(allRiddles[parseInt(choosen) - 1]._id);
+            await runCoosenRiddle(allRiddles[parseInt(choosen) - 1]._id, player);
         } else {
             console.log("Not valid try again");
         }
