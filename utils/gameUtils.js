@@ -16,6 +16,6 @@ const TimeMeasurement = function (callback, player) {
     return timeTaken;
 }
 
-export { runQuestions }
+export default runQuestions;
 
 

@@ -1,7 +1,6 @@
 // imports
-import { Player } from "../classes/Player.js"//temp
 import { loadRiddles, loadOneRiddle, loadRiddlesByDifficulty } from "../services/riddleServ.js";
-import { runQuestions } from "../utils/gameUtils.js";
+import runQuestions from "../utils/gameUtils.js";
 
 // Run default game (All riddles infinite fails)
 export async function regularMode(player) {
