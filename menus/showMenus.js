@@ -1,4 +1,4 @@
-import { loadRiddles } from "../services/riddleServ.js";
+import loadedRiddles from "../services/allRiddles.js";
 
 export function showMainMenu() {
     console.log(`
@@ -10,15 +10,13 @@ export function showMainMenu() {
         `);
 }
 
-export async function showRiddlesMenu() {
-    const loadedRiddles = await loadRiddles();
+export function showRiddlesMenu() {
     console.log(`====Riddles====`);
     console.log(`\n+. Create riddle\n`);
     for (let i = 0; i < loadedRiddles.length; i++) {
         console.log(`${i + 1}. ${loadedRiddles[i].name}`);
     }
     console.log(`0. Back`);
-    return loadedRiddles;
 }
 
 export function showModesMenu() {

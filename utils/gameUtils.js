@@ -1,6 +1,8 @@
 // Take riddles and player and ask the player questions
 const runQuestions = function (loadedRiddles, player) {
     for (const riddle of loadedRiddles) {
+        console.log(typeof(riddle));
+        
         const timeTaken = TimeMeasurement(() => riddle.ask(), player);
         console.log(`Your time: ${timeTaken}\n`);
     }

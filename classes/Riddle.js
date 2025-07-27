@@ -3,7 +3,7 @@ import { question } from "readline-sync";
 
 export class Riddle {
     constructor(objectRiddle) {
-        this.id = objectRiddle.id;
+        this._id = objectRiddle._id;
         this.type = objectRiddle.type;
         this.difficulty = objectRiddle.difficulty;
         this.name = objectRiddle.name;

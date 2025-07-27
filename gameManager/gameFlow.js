@@ -5,7 +5,6 @@ import { loadPlayer, addPlayer } from "../services/playerServ.js";
 export async function startGame() {
     const username = readline.question(`Enter your name> `);
     let player = await loadPlayer(username);
-
     if (!player.name) {
         player = await addPlayer(username);
     } else {
@@ -15,4 +14,4 @@ export async function startGame() {
     await mainMenu(player);
 }
 
-startGame();
+await startGame();

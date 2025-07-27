@@ -1,7 +1,8 @@
 // imports
 import readline from "readline-sync";
+import loadedRiddles from "./allRiddles.js"
 import { showDiffcultiesMenu, showTypesMenu } from "../menus/showMenus.js";
-import { getAllRiddles, getRiddleById, getRiddlesByDifficulty, createRiddle } from "../API/riddleApi.js";
+import { getAllRiddles, getRiddlesByDifficulty, createRiddle } from "../API/riddleApi.js";
 import { ChoiceRidle } from "../classes/ChoiceRidle.js";
 import { Riddle } from "../classes/Riddle.js";
 
@@ -11,8 +12,7 @@ export async function loadRiddles() {
     const loadedRiddles = allRiddles.map((r) => {
         if (r.type === "regular") {
             return new Riddle(r)
-        }
-        else if (r.type === "choices") {
+        } else if (r.type === "choices") {
             return new ChoiceRidle(r, r.choices)
         }
     });
@@ -20,11 +20,12 @@ export async function loadRiddles() {
 }
 
 // Load one riddle
-export async function loadOneRiddle(riddleId) {
-    const toArr = [];
-    const riddle = await getRiddleById(riddleId);
-    toArr.push(riddle);
-    return toArr;
+export function loadOneRiddle(riddle) {
+    if (riddle.type === "regular") {
+        return riddle = new Riddle(riddle)
+    } else if (riddle.type === "choices") {
+        return riddle = new ChoiceRidle(riddle, riddle.choices)
+    }
 }
 
 // Load by difficulty level
@@ -36,8 +37,23 @@ export async function loadRiddlesByDifficulty(difficulty) {
 
 // Add riddle to db
 export async function addRiddle() {
-    const newRiddle = askParamsForCreateRiddle();
-    await createRiddle(newRiddle);
+    try {
+        const newRiddle = askParamsForCreateRiddle();
+        const response = await createRiddle(newRiddle);
+        if (response.code === 1) {
+            console.log("not");
+            
+            return false; 
+        }
+        console.log("yes");
+        
+        const loadedRiddle = loadOneRiddle(newRiddle);
+        loadedRiddles.push(loadedRiddle);
+        return true;
+    } catch (error) {
+        console.error(error);
+        return false;
+    }
 }
 
 // Helper functions for adding riddle
@@ -59,9 +75,9 @@ function askParamsForCreateRiddle() {
 }
 
 function chooseDiffculty() {
-    showDiffcultiesMenu();
-    const difficulty = readline.question(`Choose diffculty> `);
     while (true) {
+        showDiffcultiesMenu();
+        const difficulty = readline.question(`Choose diffculty> `);
         switch (difficulty) {
             case "1":
                 return "easy";
@@ -71,20 +87,24 @@ function chooseDiffculty() {
                 return "hard";
             default:
                 console.log('Not valid');
+                console.clear();
         }
     }
 }
 
 function chooseType() {
-    showTypesMenu();
-    const type = readline.question(`Choose type> `)
-    switch (type) {
-        case "1":
-            return "regular";
-        case "2":
-            return "choices"
-        default:
-            break;
+    while (true) {
+        showTypesMenu();
+        const type = readline.question(`Choose type> `)
+        switch (type) {
+            case "1":
+                return "regular";
+            case "2":
+                return "choices"
+            default:
+                console.log('Not valid');
+                console.assert();
+        }
     }
 }
 
